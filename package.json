@@ -1,0 +1,32 @@
+{
+  "name": "my-pw-fw",
+  "version": "1.0.0",
+  "description": "Automation testing with JavaScript, Playwright and CucumberJs",
+  "main": "index.js",
+  "scripts": {
+    "**********************************************AUTOMATION******************************************************************************************************": "Test scripts",
+    "pretest:automationpractice:desktop": "node preExecutionCleanup.js",
+    "test:automationpractice:desktop": "cross-env NODE_ENV=test_environment  PWVIDEO=y BROWSER='' LANGUAGE=english REPORT_FILE_NAME=automationpractice_DESKTOP cucumber-js --parallel 1 -p e2eTestForBoost || true",
+    "posttest:automationpractice:desktop": "cross-env NODE_ENV=test_environment  BROWSER='' LANGUAGE=english REPORT_FILE_NAME=e2eTestForBoost node reporter.js "
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.2.1",
+    "@cucumber/pretty-formatter": "^1.0.0",
+    "@playwright/test": "^1.41.1",
+    "@types/node": "^20.11.10",
+    "chai": "^5.0.0",
+    "colors": "1.4.0",
+    "cross-env": "^7.0.3",
+    "cucumber-html-reporter": "7.1.1",
+    "fs.promises": "0.1.2",
+    "lodash": "^4.17.21",
+    "moment": "2.30.1",
+    "mssql": "^10.0.1",
+    "npm-run-all": "^4.1.5",
+    "playwright": "1.40.1",
+    "request": "2.88.2",
+    "supertest": "^6.3.3"
+  }
+}
