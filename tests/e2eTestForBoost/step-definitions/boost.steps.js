@@ -3,11 +3,11 @@ let helpers = require('../../../helpers/common-actions');
 const assert = require('assert');
 
 
-Given(/^login with (.*) and (.*)$/, async (username, password) => {
+Given(/^Login with (.*) and (.*)$/, async (username, password) => {
    await boostPostPage.performLogin(username, password)
 })
 
-Then (/^create a text post$/,async function (){
+Then (/^Create a text post$/,async function (){
     await myFeedPage.CreatePost()
     await helpers.waitForTimeout(page,5000);
     await  myFeedPage.CreatePostFunc();
@@ -22,11 +22,10 @@ When (/^I check the Boost Campaign Details$/,async function (){
     await boostPage.setBudgetAndDuration();
 })
 
-When (/^complete the Boost payment process$/,async function (){
+When (/^Complete the Boost payment process$/,async function (){
     await helpers.waitForTimeout(page,5000);
     await orderSummaryPage.VerifyOrderSummary();
     await orderSummaryPage.CompletePurchase();
-
 })
 
 When(/^I click on the Campaign Dashboard button$/,async function (){

@@ -1,7 +1,7 @@
 const configEnv = {
 
     test_environment: {
-        test_baseUrl: 'https://test.bandlab.com/',
+        desktop: 'https://test.bandlab.com/',
         e2eConst: 'e2eConstants'
     }
 }

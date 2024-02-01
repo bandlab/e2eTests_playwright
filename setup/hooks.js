@@ -41,7 +41,7 @@ Before(async (scenario) => {
     password: 'uW2UJTN4RAx94mVS',
   });
   global.page = await global.context.newPage();
-  await helpers.gotoPage(page,global.BASE_URL.desktop)
+  await helpers.gotoPage(page,global.BASE_URL)
 });
 
 // close the page and context after each test.
