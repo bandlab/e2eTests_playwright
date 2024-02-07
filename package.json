@@ -1,13 +1,13 @@
 {
-  "name": "my-pw-fw",
+  "name": "e2e-automation-tests",
   "version": "1.0.0",
   "description": "Automation testing with JavaScript, Playwright and CucumberJs",
   "main": "index.js",
   "scripts": {
     "**********************************************AUTOMATION******************************************************************************************************": "Test scripts",
-    "pretest:automationpractice:desktop": "node preExecutionCleanup.js",
-    "test:automationpractice:desktop": "cross-env NODE_ENV=test_environment  PWVIDEO=y BROWSER='' LANGUAGE=english REPORT_FILE_NAME=automationpractice_DESKTOP cucumber-js --parallel 1 -p e2eTestForBoost || true",
-    "posttest:automationpractice:desktop": "cross-env NODE_ENV=test_environment  BROWSER='' LANGUAGE=english REPORT_FILE_NAME=e2eTestForBoost node reporter.js "
+    "pretest:automation:desktop": "node preExecutionCleanup.js",
+    "test:automation:desktop": "cross-env NODE_ENV=test_environment BROWSER='' REPORT_FILE_NAME=automation_DESKTOP cucumber-js --parallel 1 -p e2eTestForBoost || true",
+    "posttest:automation:desktop": "cross-env NODE_ENV=test_environment  BROWSER='' REPORT_FILE_NAME=e2eTestForBoost node reporter.js "
   },
   "author": "",
   "license": "ISC",

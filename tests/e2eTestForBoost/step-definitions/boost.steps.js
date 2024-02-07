@@ -1,39 +1,31 @@
 const {Given, When, Then} = require('@cucumber/cucumber')
 let helpers = require('../../../helpers/common-actions');
-const assert = require('assert');
 
 
-Given(/^Login with (.*) and (.*)$/, async (username, password) => {
-   await boostPostPage.performLogin(username, password)
+Given(/^I login with (.*) and (.*)$/, async (username, password) => {
+   await boostPostPage.login(username, password)
 })
-
-Then (/^Create a text post$/,async function (){
-    await myFeedPage.CreatePost()
-    await helpers.waitForTimeout(page,5000);
-    await  myFeedPage.CreatePostFunc();
+Then(/^I create a text post$/,async function (){
+    await myFeedPage.createPost();
+    await helpers.waitForTimeout(page,10000);
+    await myFeedPage.validateCreatedPost();
 })
-
-Then (/^I click the boost button$/,async function (){
+Then(/^I click the Boost button$/,async function (){
     await myFeedPage.clickBoost();
 })
-
-When (/^I check the Boost Campaign Details$/,async function (){
-    await boostPage.VerifySetBudgetAndDuration();
+When(/^I check the Boost Campaign details$/,async function (){
+    await boostPage.verifySetBudgetAndDuration();
     await boostPage.setBudgetAndDuration();
 })
-
-When (/^Complete the Boost payment process$/,async function (){
+When(/^I complete the Boost payment process$/,async function (){
     await helpers.waitForTimeout(page,5000);
-    await orderSummaryPage.VerifyOrderSummary();
-    await orderSummaryPage.CompletePurchase();
+    await orderSummaryPage.verifyOrderSummary();
+    await orderSummaryPage.completePurchase();
 })
-
 When(/^I click on the Campaign Dashboard button$/,async function (){
-    await helpers.waitForTimeout(page,10000);
     await campaignDashboardPage.campaignDashBoardButton();
 })
-
-Then (/^Boost Post Campaign is returned should be returned in the Campaign Dashboard$/,async function (){
+Then(/^Boost Post campaign is returned should be returned in the Campaign Dashboard$/,async function (){
     await helpers.waitForTimeout(page,10000);
     await campaignDashboardPage.campaignDashboardPage();
 })

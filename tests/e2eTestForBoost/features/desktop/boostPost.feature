@@ -1,13 +1,15 @@
 Feature: Boost a Post Feature
 
   Scenario Outline: Boost a Non-music Post
-    Given Login with <username> and <password>
-    When Create a text post
-    And I click the boost button
-    When I check the Boost Campaign Details
-    And Complete the Boost payment process
+    Given I login with <username> and <password>
+    When I create a text post
+    And I click the Boost button
+    When I check the Boost Campaign details
+    And I complete the Boost payment process
+    When I click on the Campaign Dashboard button
+    Then Boost Post campaign is returned should be returned in the Campaign Dashboard
 
   Examples:
     |username| |password|
-    |moryani | | test@1234|
+    |bandlabbackendtest@outlook.com | | testingbackend123|
 

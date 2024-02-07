@@ -1,30 +1,22 @@
 const helpers = require("../../../helpers/common-actions")
-const {waitForLoadState} = require("../../../helpers/common-actions");
-const productPageLocators = {
-    product: function (productName) {
-        return '(//a[@title="' + productName + '"])[2]'
-    }
-}
 
 const campaignDashboardLocators = {
-    setPageText: "//div[text()='You’re all set!']",
-    campaignDashboardButton: "(//button[@type='button'])[1]",
-    allFilterDropdown: "//a[@dropdown-direction='down']",
-    inReviewFilterDropdown: "//a[contains(text(),'In Review')]",
-    firstCampaignInDashboard: "//span[text()='e2e_test_Post']"
+    campaignDashboardButton_locator: "//button[contains(@class,'ds-button ds-button-primary')]",
+    firstCampaignInDashboard_locator: "//span[text()='e2e_test_Post']",
+    boostCampaignFilter_locator: "(//a[@class='side-nav-item ng-scope'])[1]",
+    campaignState_locator: "(//span[text()='In Review'])[1]"
 }
 class campaignDashboard {
     async campaignDashBoardButton(){
-
-        await helpers.clickElement(page, campaignDashboardLocators.campaignDashboardButton)
+        await helpers.clickElement(page, campaignDashboardLocators.campaignDashboardButton_locator)
     }
     async campaignDashboardPage(){
-        await helpers.clickElement(page, campaignDashboardLocators.allFilterDropdown)
-        await helpers.clickElement(page, campaignDashboardLocators.inReviewFilterDropdown)
-        await helpers.waitForTimeout(page,5000);
-        const createdCampaign = await helpers.getText(campaignDashboardLocators.firstCampaignInDashboard)
-        console.log("createdCampaign -> "+createdCampaign);
-        assert.strictEqual(createdCampaign,"e2e_test_Post","Boost Post Campaign returned in the Campaign Dashboard InReview state")
+        await helpers.clickElement(page, campaignDashboardLocators.boostCampaignFilter_locator)
+        const createdBoostCampaign =await helpers.getText(page, campaignDashboardLocators.firstCampaignInDashboard_locator)
+        const inReviewCampaign = await helpers.getText(page, campaignDashboardLocators.campaignState_locator)
+        assert.strictEqual(createdBoostCampaign, "e2e_test_Post","Boost Post Campaign returned in the Campaign Dashboard")
+        assert.strictEqual(inReviewCampaign, "In Review", "State is InReview as expected")
     }
 }
-module.exports= {campaignDashboard}
+
+module.exports= { campaignDashboard }

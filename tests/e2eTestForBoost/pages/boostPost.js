@@ -1,21 +1,18 @@
-//const LoginBase = require('../pages-base/loginBase')
 const helpers = require('../../../helpers/common-actions')
-const commonMethods = require('../commonMethods')
 
 const loginPageLocators = {
-    loginLink:"//*[contains(text(),'Log in')]",
-    usernameTextBox: '#username',
-    passwordTextBox: '#password',
-    loginButton: "//*[contains(text(),'Log in')]",
+    loginLink_locator:"//*[contains(text(),'Log in')]",
+    usernameTextBox_locator: '#username',
+    passwordTextBox_locator: '#password',
+    loginButton_locator: "//*[contains(text(),'Log in')]",
 }
 
 class BoostPost {
-
-    async performLogin(username, password) {
-        await helpers.clickElement(page,loginPageLocators.loginLink)
-        await helpers.clearAndInputText(page, loginPageLocators.usernameTextBox, username)
-        await helpers.clearAndInputText(page, loginPageLocators.passwordTextBox, password)
-        await helpers.clickElement(page, loginPageLocators.loginButton)
+    async login(username, password) {
+        await helpers.clickElement(page,loginPageLocators.loginLink_locator)
+        await helpers.clearAndInputText(page, loginPageLocators.usernameTextBox_locator, username)
+        await helpers.clearAndInputText(page, loginPageLocators.passwordTextBox_locator, password)
+        await helpers.clickElement(page, loginPageLocators.loginButton_locator)
     }
 }
 

@@ -15,5 +15,4 @@ BeforeAll(async function () {
       global.boostPage=new BoostPage()
       global.orderSummaryPage=new OrderSummary()
       global.campaignDashboardPage=new campaignDashboard()
-
 })
