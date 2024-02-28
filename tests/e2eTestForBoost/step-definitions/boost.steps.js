@@ -1,31 +1,45 @@
 const {Given, When, Then} = require('@cucumber/cucumber')
 let helpers = require('../../../helpers/common-actions');
 
-
-Given(/^I login with (.*) and (.*)$/, async (username, password) => {
-   await boostPostPage.login(username, password)
+const config = require('../../../shared/config.test');
+Given(/^I login as Alice$/, async () => {
+    await loginPage.login(config.alice.username, config.alice.password)
 })
 Then(/^I create a text post$/,async function (){
-    await myFeedPage.createPost();
-    await helpers.waitForTimeout(page,10000);
-    await myFeedPage.validateCreatedPost();
+    await feedPage.createPost();
+    await helpers.waitForLoadState(page, 5000)
+    await feedPage.validateCreatedPost();
 })
 Then(/^I click the Boost button$/,async function (){
-    await myFeedPage.clickBoost();
+    await feedPage.clickBoost();
 })
-When(/^I check the Boost Campaign details$/,async function (){
+When(/^I set the Budget & Duration for my Boost Campaign$/,async function (){
     await boostPage.verifySetBudgetAndDuration();
     await boostPage.setBudgetAndDuration();
 })
 When(/^I complete the Boost payment process$/,async function (){
-    await helpers.waitForTimeout(page,5000);
     await orderSummaryPage.verifyOrderSummary();
     await orderSummaryPage.completePurchase();
 })
 When(/^I click on the Campaign Dashboard button$/,async function (){
     await campaignDashboardPage.campaignDashBoardButton();
 })
-Then(/^Boost Post campaign is returned should be returned in the Campaign Dashboard$/,async function (){
-    await helpers.waitForTimeout(page,10000);
+Then(/^Boost Post campaign is shown on Boost Dashboard$/,async function (){
+    await helpers.waitForTimeout(page,20000);
     await campaignDashboardPage.campaignDashboardPage();
+})
+When(/^when I click on the Boost button again to check the Campaign is created$/, async function(){
+    await feedPage.feed();
+    await helpers.waitForTimeout(page,20000);
+    await feedPage.clickBoost();
+})
+Then(/^Campaign Performance page should be displayed with status In-Review$/, async function(){
+    await helpers.waitForTimeout(page,5000);
+    await campaignPerformancePage.campaignStatus();
+    await campaignPerformancePage.verifyCampaignDetails();
+})
+Then(/^I delete the post created for clean-up$/, async function(){
+    await helpers.waitForTimeout(page,5000);
+    await feedPage.feed();
+    await feedPage.deletePost();
 })

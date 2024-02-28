@@ -7,7 +7,7 @@ const loginPageLocators = {
     loginButton_locator: "//*[contains(text(),'Log in')]",
 }
 
-class BoostPost {
+class Login {
     async login(username, password) {
         await helpers.clickElement(page,loginPageLocators.loginLink_locator)
         await helpers.clearAndInputText(page, loginPageLocators.usernameTextBox_locator, username)
@@ -16,4 +16,4 @@ class BoostPost {
     }
 }
 
-module.exports = { BoostPost }
+module.exports = { Login }
