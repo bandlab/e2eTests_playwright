@@ -483,7 +483,7 @@ async function refreshPage(page) {
         CustomException('Failed refresh the page', undefined, exec)
     }
 }
-async function generateRandomEmail() {
+async function generateRandomText() {
     const length = 6
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -491,7 +491,7 @@ async function generateRandomEmail() {
     for (let i = 0; i < length; i++) {
         result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
-    return "test" + result + "@testemail.com"
+    return "e2e_Post_Test_" + result + "test"
 }
 
 async function tickCheckBox(page, locator) {
@@ -1017,5 +1017,6 @@ module.exports = {
     gotoPage,
     clearAndInputText,
     waitForTimeout,
-    waitForLoadState
+    waitForLoadState,
+    generateRandomText
 };

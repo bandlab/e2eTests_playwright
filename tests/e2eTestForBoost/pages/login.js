@@ -9,9 +9,13 @@ const loginPageLocators = {
 
 class Login {
     async login(username, password) {
+        // @ts-ignore
         await helpers.clickElement(page,loginPageLocators.loginLink_locator)
+        // @ts-ignore
         await helpers.clearAndInputText(page, loginPageLocators.usernameTextBox_locator, username)
+        // @ts-ignore
         await helpers.clearAndInputText(page, loginPageLocators.passwordTextBox_locator, password)
+        // @ts-ignore
         await helpers.clickElement(page, loginPageLocators.loginButton_locator)
     }
 }

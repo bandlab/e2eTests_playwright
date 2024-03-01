@@ -7,7 +7,7 @@ Given(/^I login as Alice$/, async () => {
 })
 Then(/^I create a text post$/,async function (){
     await feedPage.createPost();
-    await helpers.waitForLoadState(page, 5000)
+    await helpers.waitForLoadState(page, 5000);
     await feedPage.validateCreatedPost();
 })
 Then(/^I click the Boost button$/,async function (){
@@ -28,7 +28,7 @@ Then(/^Boost Post campaign is shown on Boost Dashboard$/,async function (){
     await helpers.waitForTimeout(page,20000);
     await campaignDashboardPage.campaignDashboardPage();
 })
-When(/^when I click on the Boost button again to check the Campaign is created$/, async function(){
+When(/^I click on the Boost button again$/, async function(){
     await feedPage.feed();
     await helpers.waitForTimeout(page,20000);
     await feedPage.clickBoost();
