@@ -4,9 +4,7 @@ const { BeforeAll, Before, After, AfterAll , Status, setDefaultTimeout } = requi
 const cucumber = require('../cucumber');
 const helpers = require('../helpers/common-actions')
 
-// const { World } = require('@cucumber/cucumber')
 
-// Launch options.
 const options = {
   // If HEADLESS is not passed through env then it is set to false.
   headless: process.env.HEADLESS === 'true',
@@ -20,21 +18,10 @@ BeforeAll(async () => {
 
   //global.browser = await playwright[].launch(options);
   global.browser = await playwright[browser].launch(options);
-  if(process.env.LANGUAGE.toLowerCase() === 'english'){
-    global.coreLanguageConstant = require('../tests/constants/englishLanguageConstants')
-  }
 });
 
 // Create a fresh browser context for each test.
 Before(async (scenario) => {
-  if (process.env.PWVIDEO) {
-    global.context = await global.browser.newContext({viewport: null,
-    recordVideo : {dir: 'videos/'+scenario.pickle.name}
-  });
-  } else {
-    helpers.logWarning("PWVIDEO is not defined as environment variable: Video will not be created.")
-
-  }
   global.context = await global.browser.newContext({viewport: null });
   await context.setHTTPCredentials({
     username: 'bandlab',
@@ -43,12 +30,6 @@ Before(async (scenario) => {
   global.page = await global.context.newPage();
   await helpers.gotoPage(page,global.BASE_URL)
 });
-
-// close the page and context after each test.
-/*After(async () => {
-  await global.page.close();
-  await global.context.close();
-});*/
 
 After(async function (scenario) {
   if (scenario.result.status === Status.FAILED) {
